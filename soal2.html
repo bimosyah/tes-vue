@@ -1,0 +1,48 @@
+<html>
+<body style="background-color: #000">
+	<div id="app">
+		<input id="message" type="text" style="margin-left: 45%;margin-top: 15%" v-model="message">
+		<h1 style="color: white;margin-left: 45%;margin-top: 1%">{{reverse_text}}</h1>
+		<button style="margin-left: 45%;margin-top: 1%" v-on:click="reverse">Reverse</button>
+		<button v-on:click="undo_redo">Undo/Redo</button>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el:"#app",
+			data: {
+				message:"",
+				_reverse_text:"",
+				reverse_text:"output = ",
+				click_count :0,
+				delay: 700,
+				timer:null
+			},
+			methods: {
+				reverse: function() {
+					this._reverse_text= this.message.split("")
+					for (let i = this._reverse_text.length-1; i >= 0; i--){
+						this.reverse_text += this._reverse_text[i]
+					}
+				},
+				undo_redo: function(){
+					this.click_count++ 
+					this._message= this.message
+					if(this.click_count === 1) {
+						var self = this
+						this.timer = setTimeout(function() {
+							self.click_count = 0
+							document.getElementById("message").value = "";
+						}, this.delay);
+					} else{
+						clearTimeout(this.timer);  
+						document.getElementById("message").value = this._message;
+						this.click_count = 0;
+					}         
+				}
+			}
+		});
+	</script>
+</body>
+</html>

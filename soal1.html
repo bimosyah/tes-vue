@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Belajar vue.js dasar</title>
+</head>
+<body>
+	<div id="app">
+		<p> input {{ input }} </p>
+		<p>output</p>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el:"#app",
+			data: {
+				input:"4 9 7 5 8 9 3",
+				isSwab:true,
+				result = []
+			},
+			methods:{
+				swab: function() {
+					while (isSwab) {
+						for (var i = 0; i < this.input.length - 1; i++) {
+							var ii = 1
+							if (this.input[i] > this.input[ii]) {
+								
+							}
+							ii++
+						}
+					}
+				}
+			}
+		});
+	</script>
+</body>
+</html>
